@@ -1,0 +1,81 @@
+module.exports = {
+  purge: {
+    mode: 'all',
+    content: ['./**/**/*.html', './**/**/*.svelte'],
+
+    options: {
+      whitelistPatterns: [/svelte-/],
+      defaultExtractor: (content) =>
+        [...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(([_match, group, ..._rest]) => group),
+    },
+  },
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+      screens:{
+        'sm':'640px',
+        // => @media (min-width: 640px) { ... }
+        'my-md':'700px',
+        // => @media (min-width: 700px) { ... }
+        'md':'768px',
+        // => @media (min-width: 768px) { ... }
+        'lg':'1024px',
+        // => @media (min-width: 1024px) { ... }
+        'xl':'1280px',
+        // => @media (min-width: 1280px) { ... }
+        '2xl':'1536px',
+        // => @media (min-width: 1536px) { ... }
+        'my-lg':'1131px',
+        // => @media (min-width: 1131px) { ... }
+        'below-lg': {'max':'1130px'},
+        // => @media (max-width: 1130px) { ... }
+      },
+    extend: {
+        gridTemplateRows:{
+            'layout': 'auto 100% auto'
+        },
+        gridTemplateColumns:{
+            'footer': '1fr 200px'
+        },
+        zIndex: {
+            '2': 2,
+            '5': 5,
+            '3': 3,
+        },
+        height: {
+            '50px': '50px',
+            '75px': '75px',
+            '100px': '100px'
+        },
+        width: {
+            '72px' : '72px'
+        },
+        margin: {
+            '76px': '76px',
+            '25px': '25px',
+            '150px': '150px'
+        },
+        padding: {
+            '5px' : '5px',
+            '10px' : '10px',
+            '15px': '15px',
+            '5%' : '5%'
+        },
+        fontSize: {
+            '3.5xl' : '2rem',
+            '6.5xl' : '4rem',
+            '42px' : '42px'
+        },
+        fontFamily: {
+            'ubuntu' : ['Ubuntu', 'sans-serif'],
+            'oswald': ['Oswald', 'sans-serif']
+        },
+        backgroundColor: theme => ({
+            'nav-dark' : '#222'
+        })
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};
