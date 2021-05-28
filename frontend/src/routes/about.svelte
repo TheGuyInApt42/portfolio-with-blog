@@ -99,12 +99,12 @@
 
 <svelte:head>
 	<title>About Ralph J Gorham</title>
-    <meta name="description" content="Description coming soon..."/>
+    <meta name="description" content="Get more information about Ralph Jarrod Gorham"/>
 </svelte:head>
 
 <div id="background-wrapper" class="w-full min-h-full">
     <div id="container" class="h-auto mx-12 text-white p-5 my-md:w-5/6">
-        <h1 class="text-center text-6.5xl my-10 font-ubuntu">Who I Am</h1>
+        <h1 class="text-center md:text-6.5xl my-10 font-ubuntu text-5xl">Who I Am</h1>
 
         <div id="content" class="pl-5%">
             

@@ -1,64 +1,124 @@
 <script context="module">
-	export async function preload({ params }) {
-		// the `slug` parameter is available because
-		// this file is called [slug].svelte
-		const res = await this.fetch(`blog/${params.slug}.json`);
-		const data = await res.json();
+    import dayjs from 'dayjs';
+    import helpers from '../../api/_api.js';
+    import snarkdown from 'snarkdown'
 
-		if (res.status === 200) {
-			return { post: data };
-		} else {
-			this.error(res.status, data.message);
-		}
-	}
+    export async function preload({params, query}) {
+        try{
+            const result = await helpers.fetchPost(params.slug)
+            console.log(result[0]);
+            const text = result[0].Body;
+     
+            let bodyWithImage = text.replace(/\/uploads\//g, 'http://localhost:1337/uploads/');
+            result[0].Body = bodyWithImage;
+
+            const post = result;
+
+            return {post}
+                
+                
+        }
+
+        catch (e) {
+            this.error(500, 'post preload error: ' + e.message);
+        }
+
+    }
 </script>
 
 <script>
-	export let post;
+    import { onMount } from 'svelte'
+    export let post;
+    let simple = false;
+
+    onMount(async() =>{
+        let imgs = document.querySelectorAll('img');
+        imgs.forEach(addSpacetoImg);
+
+    })
+
+    const addSpacetoImg = img =>{
+        img.style.margin = '5% 0';
+        img.style.width = '100%';
+    }
 </script>
 
 <style>
-	/*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
-	.content :global(h2) {
-		font-size: 1.4em;
-		font-weight: 500;
-	}
+    .container {
+        align-items: center;
+        padding-top: 5%;
+    }
 
-	.content :global(pre) {
-		background-color: #f9f9f9;
-		box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-		padding: 0.5em;
-		border-radius: 2px;
-		overflow-x: auto;
-	}
+    .container > * {
+        width: 100%;
+        max-width: 700px;
+    
+    }
+    h2{
+        padding-bottom: 2%;
+    }
 
-	.content :global(pre) :global(code) {
-		background-color: transparent;
-		padding: 0;
-	}
+section{
+    padding-top: 2%;
+        background-color: #1a202c;
+        color: #fff;
+}
 
-	.content :global(ul) {
-		line-height: 1.5;
-	}
+  .footer {
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .category-link{
+      padding: 0 2% 2% 0;
+  }
 
-	.content :global(li) {
-		margin: 0 0 0.5em 0;
-	}
+  .header {
+      background-position: top center;
+    min-height: 30vw;
+    /*height: 0;
+    width: 100%;
+    padding-top: 72.88%;*/
+  }
+
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+    <title>Blog Post</title>
+    <meta name="description" content="An amazing story by Ralph Jarrod Gorham"/>
 </svelte:head>
 
-<h1>{post.title}</h1>
 
-<div class="content">
-	{@html post.html}
-</div>
+<section class="h-full ">
+    {#each post as post}
+            {#if post.Cover}
+                 <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url('http://localhost:1337{post.Cover.url}')">
+                </div>
+            {/if}
+            
+            <main class="below-768:pl-6">
+            <div class="container flex flex-col">
+                <h1 class="md:text-5xl text-4xl">{post.Title}</h1>
+                <h2 class="my-3">{dayjs(post.Published).format("MMM DD YYYY")}</h2>
+                
+                <div id="categories" class="flex mb-6">
+                    {#each post.categories as category}
+                        <a class="category-link" href="categories/{category.id}" rel="prefetch">#{category.name}</a>
+                    {/each}
+                </div>
+                
+                
+                <div>
+                {@html snarkdown(post.Body)}
+                </div>
+
+            </main>
+
+            <p class="footer">© Ralph Jarrod Gorham 2021</p>
+
+    {/each}
+
+    <!--
+    <p class="test">⇺<a href="blog"> back to articles</a></p>
+    -->
+
+</section>

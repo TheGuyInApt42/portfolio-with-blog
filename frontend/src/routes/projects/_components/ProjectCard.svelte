@@ -65,13 +65,13 @@
     transition: opacity calc(var(--d) * 1.5) var(--e);
     }
     .card:nth-child(1):before {
-    background-image: url("images/droplet.png");
+    background-image: url("/droplet.png");
     }
     .card:nth-child(2):before {
-    background-image: url("images/whiterocknc.com.png");
+    background-image: url("/whiterocknc.com.png");
     }
     .card:nth-child(3):before {
-    background-image: url("images/homepage_thumb.png");
+    background-image: url("/homepage_thumb.png");
     }
     .card:nth-child(4):before {
     background-image: url(img-04.jpg);

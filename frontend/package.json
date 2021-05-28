@@ -9,9 +9,12 @@
     "start": "node __sapper__/build"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "compression": "^1.7.1",
+    "dayjs": "^1.10.4",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "snarkdown": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.1.0",

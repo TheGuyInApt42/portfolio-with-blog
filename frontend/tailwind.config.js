@@ -26,6 +26,12 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
         'my-lg':'1131px',
         // => @media (min-width: 1131px) { ... }
+        'below-md': {'max': '675px'},
+        // => @media (max-width: 675px) { ... }
+        'below-768': {'max':'768px'},
+        // => @media (max-width: 768px) { ... }
+        'below-1024': {'max':'1024px'},
+        // => @media (max-width: 1024px) { ... }
         'below-lg': {'max':'1130px'},
         // => @media (max-width: 1130px) { ... }
       },
@@ -52,17 +58,20 @@ module.exports = {
         margin: {
             '76px': '76px',
             '25px': '25px',
-            '150px': '150px'
+            '150px': '150px',
+            '4%': '4%'
         },
         padding: {
             '5px' : '5px',
             '10px' : '10px',
             '15px': '15px',
+            '2%': '2%',
             '5%' : '5%'
         },
         fontSize: {
             '3.5xl' : '2rem',
             '6.5xl' : '4rem',
+            '40px' : '40px',
             '42px' : '42px'
         },
         fontFamily: {
@@ -70,7 +79,9 @@ module.exports = {
             'oswald': ['Oswald', 'sans-serif']
         },
         backgroundColor: theme => ({
-            'nav-dark' : '#222'
+            'nav-dark' : '#222',
+            'projects-background' : '#DCDCDC',
+            'blog-background': '#1a202c'
         })
     },
   },

@@ -156,7 +156,7 @@
 
 <svelte:head>
 	<title>Contact Ralph J Gorham</title>
-    <meta name="description" content="Description coming soon..."/>
+    <meta name="description" content="Form to contact Ralph Jarrod Gorham"/>
 </svelte:head>
 
 <section class="w-full min-h-full text-center">

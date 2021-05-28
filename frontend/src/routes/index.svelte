@@ -35,7 +35,9 @@
 
 <svelte:head>
 	<title>Ralph J Gorham Web Developer</title>
-    <meta name="description" content="Description coming soon..."/>
+    <meta name="description" content="The homepage of Ralph Jarrod Gorham, a web 
+    developer based in NY. Enter here to learn more about the life and times of 
+    Ralph Jarrod Gorham."/>
 </svelte:head>
 
 

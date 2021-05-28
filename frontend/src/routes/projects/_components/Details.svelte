@@ -15,11 +15,11 @@
     </div>
 
     <div class="project-info">
-        <h2 class="project-title"><a href="{link}" target="_blank" rel="noopener noreferrer">
+        <h2 class="project-title below-md:my-5 mb-5"><a href="{link}" target="_blank" rel="noopener noreferrer">
             {title}</a>
         </h2>
         <p class="project-description">{desc}</p>
-        <p class="project-tools">{tools}</p>
+        <p class="project-tools mt-2.5">{tools}</p>
     
     </div>
 
