@@ -1,6 +1,7 @@
 <script context="module">
     import dayjs from 'dayjs';
     import helpers from '../../api/_api.js';
+    import { rootUrl } from '../../api/_api.js';
     import snarkdown from 'snarkdown'
 
     export async function preload({params, query}) {
@@ -9,7 +10,8 @@
             console.log(result[0]);
             const text = result[0].Body;
      
-            let bodyWithImage = text.replace(/\/uploads\//g, 'http://localhost:1337/uploads/');
+            const imageUrl = `${rootUrl}/uploads/`;
+            let bodyWithImage = text.replace(/\/uploads\//g, imageUrl);
             result[0].Body = bodyWithImage;
 
             const post = result;
@@ -28,6 +30,7 @@
 
 <script>
     import { onMount } from 'svelte'
+
     export let post;
     let simple = false;
 
@@ -41,6 +44,7 @@
         img.style.margin = '5% 0';
         img.style.width = '100%';
     }
+
 </script>
 
 <style>
@@ -91,7 +95,7 @@ section{
 <section class="h-full ">
     {#each post as post}
             {#if post.Cover}
-                 <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url('http://localhost:1337{post.Cover.url}')">
+                 <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url({rootUrl}{post.Cover.url})">
                 </div>
             {/if}
             

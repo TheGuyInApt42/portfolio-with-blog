@@ -12,6 +12,7 @@
             //result[0].Body = bodyWithImage;
 
             const category = result;
+            console.log(category);
 
             return {category}
                 

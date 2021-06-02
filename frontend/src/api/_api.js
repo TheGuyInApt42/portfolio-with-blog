@@ -1,8 +1,10 @@
 import axios from 'axios';
-
+console.log(process.env.NODE_ENV);
 //const apiUrl = process.env.API_URL || 'http://localhost:1337/blogs';
-const apiUrl = 'http://localhost:1337/blogs';
-const categoriesUrl = 'http://localhost:1337/categories';
+const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/blogs' : 'https://strapi-somn.onrender.com/blogs';
+const prodUrl = 'https://strapi-somn.onrender.com/blogs';
+const categoriesUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/categories' : 'https://strapi-somn.onrender.com/categories';
+export const rootUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://strapi-somn.onrender.com';
 
 const helpers = {
     fetchPosts: async function(){

@@ -6,7 +6,7 @@
         try{
             const result = await helpers.fetchPosts()
             const posts = result[0];
-
+            console.log(posts);
             return {posts}     
         }
 
@@ -47,7 +47,7 @@
           </a>
           <h2 class="pt-2% below-768:py-2%">{dayjs(post.Published).format("MMM DD YYYY")}</h2>
 
-          <h3>{post.Description}</h3>
+          <h3 class="py-5">{post.Description}</h3>
           {#each post.categories as category}
                <a class="category-link pr-5" href="categories/{category.id}" rel="prefetch">#{category.name}</a>
           {/each}
