@@ -10,7 +10,7 @@
             console.log(result[0]);
             const text = result[0].Body;
      
-            const imageUrl = `${rootUrl}/uploads/`;
+            const imageUrl = `/uploads/`;
             let bodyWithImage = text.replace(/\/uploads\//g, imageUrl);
             result[0].Body = bodyWithImage;
 
