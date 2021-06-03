@@ -32,7 +32,6 @@
     import { onMount } from 'svelte'
 
     export let post;
-    let simple = false;
 
     onMount(async() =>{
         let imgs = document.querySelectorAll('img');
