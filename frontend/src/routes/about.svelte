@@ -119,7 +119,7 @@
             <ul id="interests-list" class="list-none my-4 pl-10 font-oswald">
                 <li>Travel</li>
                 <li>Food/Cooking</li>
-                <li>Xbox</li>
+                <li>Xbox -> <a href="https://twitch.tv/jarrodtank" target="_blank" rel="noopener">Twitch Account</a></li>
                 <li>Brazilian Jiu-Jitsu</li>
                 <li>Coding/Tinkering</li>
                 <li>Duke Basketball</li>

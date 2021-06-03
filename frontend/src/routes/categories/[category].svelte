@@ -59,8 +59,6 @@
 
     h1{
         font-family: 'Goblin One', cursive;
-        font-size: 64px;
-        padding: 8% 0 3%;
     }
 
     h2{
@@ -79,20 +77,6 @@
         font-family: 'Oswald', sans-serif;
     }
 
-  .footer {
-    margin: 3rem 0;
-    text-align: center;
-  }
-
-
-  .header {
-    color: white;
-    text-shadow: 0px 1px 3px rgba(0,0,0,.8), 0px 0px 6px rgba(0,0,0,.8);
-    background-size: cover;
-    min-height: 25vw;
-    justify-content: flex-end;
-        padding-top: 2rem;
-  }
 
 </style>
 
@@ -104,9 +88,11 @@
 
 <section class="h-full bg-blog-background text-white items-center flex flex-col">
 
-    <h1>
+    <h1 class="text-6.5xl pt-8%">
         {category.name}
     </h1>
+
+    <a class="pb-3% text-2xl underline" href="categories">All Categories</a>
 
     <ul>
         {#each category.blogs as post}
@@ -120,29 +106,5 @@
     {/each}
     </ul>
     
-<!--
-                {#each category as post}
-                        
-                        <div class="header container" style="background-image: url('http://localhost:1337{post.Cover.url}')">
-                        </div>
-                        <main>
-                        <div class="container">
-                                <h1>{post.Name}</h1>
-                               
 
-                        </div>
-                        </main>
-
-                        <p class="footer">© Ralph Jarrod Gorham 2021</p>
-            
-                {/each}
-      
-        
-
-        
-
-
-
-        <p>⇺<a href="articles"> back to articles</a></p>
-                    -->
 </section>
