@@ -29,53 +29,51 @@
 
 <style>
     .project{
-    width: 100%;
-    height: auto;
-    margin-bottom: 100px;
-  }
+        width: 100%;
+        height: auto;
+        margin-bottom: 100px;
+    }
 
-  .thumbnail{
-      grid-area: thumb;
-  }
+    .thumbnail{
+        grid-area: thumb;
+    }
 
-  .project-info{
-      grid-area: info;
+    .project-info{
+        grid-area: info;
 
-  }
+    }
 
-  img{
-      width: 200px;
-      height: 200px;
-      border-radius: 10%;
-  }
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius: 10%;
+    }
 
-  .project-tools{
-      font-weight: 700;
-      
-  }
+    .project-tools{
+        font-weight: 700;
+        
+    }
 
-  h2{
-      font-size: 1.75em;
-  }
+    h2{
+        font-size: 1.75em;
+    }
 
-  a{
-      color: black;
-  }
+    a{
+        color: black;
+    }
 
-p{
-    font-size: 1.25em;
-}
+    p{
+        font-size: 1.25em;
+    }
 
-@media (min-width: 675px){
-.project{
-    display: grid;
-    grid-template-columns: 200px 20px 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "thumb . info";
-  }
-}
-
-
+    @media (min-width: 675px){
+        .project{
+            display: grid;
+            grid-template-columns: 200px 20px 1fr;
+            grid-template-rows: auto;
+            grid-template-areas:
+                "thumb . info";
+        }
+    }
 
 </style>

@@ -17,8 +17,6 @@
         color: rgb(252, 252, 252);
     }
 
-  
-
     form{
         background: #EBEBEB;
         text-align: center; 
