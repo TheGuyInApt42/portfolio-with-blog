@@ -1,18 +1,20 @@
 import axios from 'axios';
-console.log(process.env.NODE_ENV);
-//const apiUrl = process.env.API_URL || 'http://localhost:1337/blogs';
-const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/blogs' : 'https://strapi-somn.onrender.com/blogs';
-const prodUrl = 'https://strapi-somn.onrender.com/blogs';
+
+
+//console.log(process.env.NODE_ENV);
+const blogPostsUrlSorted = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/blogs?_sort=Published:desc' : 'https://strapi-somn.onrender.com/blogs?_sort=Published:desc';
+const blogPostsUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/blogs' : 'https://strapi-somn.onrender.com/blogs';
+const prodUrl = 'https://strapi-somn.onrender.com/blogs?_sort=Published:desc';
 const categoriesUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337/categories' : 'https://strapi-somn.onrender.com/categories';
 export const rootUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:1337' : 'https://strapi-somn.onrender.com';
 
 const helpers = {
     fetchPosts: async function(){
         let posts = [];
-        await axios.get(apiUrl)
+        await axios.get(blogPostsUrlSorted)
             .then((response) => {
-              posts.push(response.data);
-              
+                posts.push(response.data);
+            
             })
             .catch(
                 error => console.log(error)
@@ -24,7 +26,7 @@ const helpers = {
     fetchPost: async function(slug){
         let post ={};
         
-        await axios.get(`${apiUrl}/?Slug=${slug}`)
+        await axios.get(`${blogPostsUrl}/?Slug=${slug}`)
             .then((response) => {
                 post = response.data;
             })
@@ -41,8 +43,8 @@ const helpers = {
         await axios.get(categoriesUrl)
             .then((response) => {
                 console.log(response.data);
-              categories.push(response.data);
-              
+                categories.push(response.data);
+            
             })
             .catch(
                 error => console.log(error)
@@ -53,7 +55,6 @@ const helpers = {
 
     fetchCategory: async function(categoryID){
         let cat ={};
-        //let categories = this.fetchCategories();
         
         await axios.get(`${categoriesUrl}/${categoryID}`)
             .then((response) => {
@@ -65,6 +66,22 @@ const helpers = {
             );
 
         return cat;
+
+    },
+
+    fetchCategoryByName: async function(name){
+        let category ={};
+        
+
+        await axios.get(`${categoriesUrl}/?name=${name}`)
+            .then((response) => {
+                category = response.data;
+            })
+            .catch(
+                error => console.log(error)
+            );
+
+        return category;
 
     }
 }

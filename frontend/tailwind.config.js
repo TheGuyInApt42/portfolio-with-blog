@@ -78,7 +78,9 @@ module.exports = {
         },
         fontFamily: {
             'ubuntu' : ['Ubuntu', 'sans-serif'],
-            'oswald': ['Oswald', 'sans-serif']
+            'oswald': ['Oswald', 'sans-serif'],
+            'goblin': ['Goblin One', 'cursive'],
+            'roboto': ['Roboto', 'sans-serif']
         },
         backgroundColor: theme => ({
             'nav-dark' : '#222',

@@ -5,7 +5,7 @@
         try{
             const result = await helpers.fetchCategories()
             const categories = result[0];
-     
+
             return {categories}     
         }
 
@@ -64,10 +64,6 @@
         content: " (" attr(data-weight) ")";
         font-size: 1rem;
     }
-
-    a{
-        text-decoration: none;
-    }
 </style>
 
 <svelte:head>
@@ -82,7 +78,7 @@
         <ul class="cloud" role="navigation" data-show-value aria-label="Categories tag cloud">
         {#each categories as category}
             <li class="list-none mb-4%">
-                <a href="categories/{category.id}" rel="prefetch" data-weight="{category.blogs.length}">{category.name}</a>
+                <a class="no-underline" href="categories/{category.name}" rel="prefetch" data-weight="{category.blogs.length}">{category.name}</a>
                 
             </li>
 

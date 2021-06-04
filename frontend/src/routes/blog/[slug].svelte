@@ -7,9 +7,8 @@
     export async function preload({params, query}) {
         try{
             const result = await helpers.fetchPost(params.slug)
-            console.log(result[0]);
-            const text = result[0].Body;
-     
+            const text = result[0].Body; //main content of the post, need as var in order to fix image src with regex
+
             const imageUrl = `/uploads/`;
             let bodyWithImage = text.replace(/\/uploads\//g, imageUrl);
             result[0].Body = bodyWithImage;
@@ -17,8 +16,6 @@
             const post = result;
 
             return {post}
-                
-                
         }
 
         catch (e) {
@@ -47,41 +44,23 @@
 </script>
 
 <style>
-    .container {
-        align-items: center;
-        padding-top: 5%;
-    }
-
     .container > * {
         width: 100%;
         max-width: 700px;
     
     }
-    h2{
-        padding-bottom: 2%;
+
+    .category-link{
+        padding: 0 2% 2% 0;
     }
 
-section{
-    padding-top: 2%;
-        background-color: #1a202c;
-        color: #fff;
-}
-
-  .footer {
-    margin: 3rem 0;
-    text-align: center;
-  }
-  .category-link{
-      padding: 0 2% 2% 0;
-  }
-
-  .header {
-      background-position: top center;
-    min-height: 30vw;
-    /*height: 0;
-    width: 100%;
-    padding-top: 72.88%;*/
-  }
+    .header {
+        background-position: top center;
+        min-height: 30vw;
+        /*height: 0;
+        width: 100%;
+        padding-top: 72.88%;*/
+    }
 
 </style>
 
@@ -91,21 +70,21 @@ section{
 </svelte:head>
 
 
-<section class="h-full ">
+<section class="h-full pt-2% text-white bg-blog-background">
     {#each post as post}
             {#if post.Cover}
-                 <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url({rootUrl}{post.Cover.url})">
+                <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url({rootUrl}{post.Cover.url})">
                 </div>
             {/if}
             
             <main class="below-768:pl-6">
-            <div class="container flex flex-col">
+            <div class="container flex flex-col items-center pt-5%">
                 <h1 class="md:text-5xl text-4xl">{post.Title}</h1>
-                <h2 class="my-3">{dayjs(post.Published).format("MMM DD YYYY")}</h2>
+                <h2 class="my-3 pb-2%">{dayjs(post.Published).format("MMM DD YYYY")}</h2>
                 
                 <div id="categories" class="flex mb-6">
                     {#each post.categories as category}
-                        <a class="category-link" href="categories/{category.id}" rel="prefetch">#{category.name}</a>
+                        <a class="category-link" href="categories/{category.name}" rel="prefetch">#{category.name}</a>
                     {/each}
                 </div>
                 
@@ -116,12 +95,11 @@ section{
 
             </main>
 
-            <p class="footer">© Ralph Jarrod Gorham 2021</p>
+            <p class="text-center my-12">© Ralph Jarrod Gorham 2021</p>
 
     {/each}
 
     <!--
     <p class="test">⇺<a href="blog"> back to articles</a></p>
     -->
-
 </section>
