@@ -65,7 +65,10 @@
 </style>
 
 <svelte:head>
-    <title>Blog Post</title>
+    {#each post as post}
+        <title>post.Title</title>
+    {/each}
+    
     <meta name="description" content="An amazing story by Ralph Jarrod Gorham"/>
 </svelte:head>
 
