@@ -27,14 +27,33 @@
 
 <script>
     import { onMount } from 'svelte'
+import { element } from 'svelte/internal';
 
     export let post;
 
     onMount(async() =>{
         let imgs = document.querySelectorAll('img');
-        imgs.forEach(addSpacetoImg);
+        let h3s = document.querySelectorAll('h3');
+        
+        addClass(imgs, 'content-image');
+        addClass(h3s, 'content-heading');
+
+
+
+
 
     })
+
+    const addClass = (elems,  addedClass) =>{
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].classList.add(addedClass);
+        }
+    }
+
+    const addSpacetoHeading = heading =>{
+        heading.style.margin = '5% 0';
+        heading.style.fontsize = '24px';
+    }
 
     const addSpacetoImg = img =>{
         img.style.margin = '5% 0';
@@ -61,6 +80,17 @@
         width: 100%;
         padding-top: 72.88%;*/
     }
+
+    :global(.content-image) {
+		margin: 5% 0;
+        width: 100%;
+	}
+
+    :global(.content-heading) {
+		margin: 5% 0;
+        font-size: 24px;
+        font-weight: bold;
+	}
 
 </style>
 
