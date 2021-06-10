@@ -72,6 +72,7 @@
             let originalSrc = vids[i].src;
             //let newSrc = originalSrc.replace('http://localhost:3000', rootUrl);
             let newSrc = process.env.NODE_ENV === 'development' ? originalSrc.replace('http://localhost:3000', rootUrl) : originalSrc.replace('https://ralphjgorham.com', rootUrl);
+            console.log(newSrc);
             newSrc = decodeURIComponent(newSrc);
             let fixedSrc = newSrc.replace('<em>',"_");
             vids[i].src = fixedSrc;
