@@ -27,16 +27,22 @@
 
 <script>
     import { onMount } from 'svelte'
-import { element } from 'svelte/internal';
 
     export let post;
 
     onMount(async() =>{
         let imgs = document.querySelectorAll('img');
         let h3s = document.querySelectorAll('h3');
+        let h4s = document.querySelectorAll('h4');
+        let source = document.querySelectorAll('source');
         
         addClass(imgs, 'content-image');
         addClass(h3s, 'content-heading');
+        addClass(h4s, 'small-heading');
+        
+        getVideoSrc(source);
+
+
 
 
 
@@ -58,6 +64,17 @@ import { element } from 'svelte/internal';
     const addSpacetoImg = img =>{
         img.style.margin = '5% 0';
         img.style.width = '100%';
+    }
+
+    // change video src
+    const getVideoSrc = vids =>{
+        for (var i = 0; i < vids.length; i++) {
+            let originalSrc = vids[i].src;
+            let newSrc = originalSrc.replace('http://localhost:3000', rootUrl);
+            newSrc = decodeURIComponent(newSrc);
+            let fixedSrc = newSrc.replace('<em>',"_");
+            vids[i].src = fixedSrc;
+        }
     }
 
 </script>
@@ -86,10 +103,21 @@ import { element } from 'svelte/internal';
         width: 100%;
 	}
 
+    :global(.content-video) {
+		margin: 5% 0;
+        width: 100%;
+	}
+
     :global(.content-heading) {
 		margin: 5% 0;
         font-size: 24px;
         font-weight: bold;
+	}
+
+    :global(.small-heading) {
+		margin: 5% 0;
+        font-size: 20px;
+        font-weight: 600;
 	}
 
 </style>
