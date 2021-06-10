@@ -70,7 +70,7 @@
     const getVideoSrc = vids =>{
         for (var i = 0; i < vids.length; i++) {
             let originalSrc = vids[i].src;
-            let newSrc = originalSrc.replace('https://ralphjgorham.com', rootUrl);
+            let newSrc = originalSrc.replace('https://ralphjgorham.com', 'https://strapi-somn.onrender.com');
             //let newSrc = process.env.NODE_ENV === 'development' ? originalSrc.replace('http://localhost:3000', rootUrl) : originalSrc.replace('https://ralphjgorham.com', rootUrl);
             console.log(newSrc);
             newSrc = decodeURIComponent(newSrc);
