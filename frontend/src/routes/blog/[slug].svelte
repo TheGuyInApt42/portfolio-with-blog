@@ -43,11 +43,6 @@
         getVideoSrc(source);
 
 
-
-
-
-
-
     })
 
     const addClass = (elems,  addedClass) =>{

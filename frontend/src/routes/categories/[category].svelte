@@ -40,7 +40,7 @@
     <ul>
         {#each category.blogs as post}
             <li class="pb-5">
-            <a class="text-2xl no-underline font-oswald" rel='prefetch' href='articles/{post.Slug}'>
+            <a class="text-2xl no-underline font-oswald" rel='prefetch' href='blog/{post.Slug}'>
                 {post.Title}
             </a>
             <h3 class="font-roboto">{dayjs(post.Published).format("MMM DD YYYY")}</h3>
