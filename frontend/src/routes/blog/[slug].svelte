@@ -27,6 +27,7 @@
 
 <script>
     import { onMount } from 'svelte'
+    //import IntersectionObserver from '../../components/IntersectionObserver.svelte';
 
     export let post;
 
@@ -41,6 +42,58 @@
         addClass(h4s, 'small-heading');
         
         getVideoSrc(source);
+
+        
+        var elements;
+  var windowHeight;
+  let reviews;
+
+  function init() {
+    elements = document.querySelectorAll('.progress-bar');
+    reviews = document.querySelectorAll('.review-text');
+    windowHeight = window.innerHeight;
+  }
+
+  function checkPosition() {
+      console.log('check');
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var positionFromTop = elements[i].getBoundingClientRect().top;
+
+      if (positionFromTop - windowHeight <= 0) {
+          
+        //element.classList.add('progress-animate');
+        let width = element.getAttribute('data-rating');
+        element.style.width = width;
+        console.log(width);
+        element.style.webkitTransition = '4s width ease 1s';
+        element.style.MozTransition = '4s width ease 1s';
+        element.style.transition = '4s width ease 1s'
+      }
+      else
+        element.style.width = 0;
+
+    }
+
+    for (var i = 0; i < reviews.length; i++) {
+      var review = reviews[i];
+      var positionFromTop = reviews[i].getBoundingClientRect().top;
+
+      if (positionFromTop - windowHeight <= 0) {
+          
+        review.style.transition = 'visibility 4s linear 4s, opacity 300ms';
+      }
+      else
+        review.style.opacity = '0';
+
+    }
+  }
+
+  //window.addEventListener('scroll', checkPosition);
+  //window.addEventListener('resize', init);
+
+  //init();
+  //checkPosition();
 
 
     })
@@ -73,6 +126,10 @@
             vids[i].src = fixedSrc;
         }
     }
+
+    
+
+    
 
 </script>
 
@@ -116,6 +173,40 @@
         font-size: 20px;
         font-weight: 600;
 	}
+.review{
+    margin: 60px auto;
+  width: 100%;
+  text-align: center;
+}
+
+:global(.progress) {
+    margin: 0 auto;
+    width: 100%;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+:global(.progress-bar) {
+    width: 0;
+  height: 16px;
+  border-radius: 4px;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  
+  -webkit-transition-property: width, background-color;
+  -moz-transition-property: width, background-color;
+  -o-transition-property: width, background-color;
+  transition-property: width, background-color;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+
 
 </style>
 
@@ -152,13 +243,28 @@
                 {@html snarkdown(post.Body)}
                 </div>
 
+                <!--
+                <div class="review">
+                    <div class="progress">
+                        <div class="progress-bar" data-rating="32%"></div>
+                    </div>
+                    <p class="review-text">My rating for this movie is 32</p>
+                </div>
+            -->
             </main>
+
+            <p class="text-center my-8 text-lg">⇺<a class="text-lg" href="blog"> back to thoughts</a></p>
+
 
             <p class="text-center my-12">© Ralph Jarrod Gorham 2021</p>
 
     {/each}
 
-    <!--
-    <p class="test">⇺<a href="blog"> back to articles</a></p>
-    -->
+    
+    
+    
+    
+
+    
+    
 </section>

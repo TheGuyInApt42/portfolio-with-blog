@@ -1,4 +1,3 @@
-
 <style>
 	video {
         background: rgba(0, 0, 0, 0.50);
