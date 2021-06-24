@@ -7,13 +7,14 @@
     export async function preload({params, query}) {
         try{
             const result = await helpers.fetchPost(params.slug)
-            const text = result[0].Body; //main content of the post, need as var in order to fix image src with regex
+            const text = result[0].Body; //main content of the post, need as let in order to fix image src with regex
 
             const imageUrl = `/uploads/`;
             let bodyWithImage = text.replace(/\/uploads\//g, imageUrl);
             result[0].Body = bodyWithImage;
 
             const post = result;
+            console.log(post);
 
             return {post}
         }
@@ -27,7 +28,6 @@
 
 <script>
     import { onMount } from 'svelte'
-    //import IntersectionObserver from '../../components/IntersectionObserver.svelte';
 
     export let post;
 
@@ -44,62 +44,42 @@
         getVideoSrc(source);
 
         
-        var elements;
-  var windowHeight;
-  let reviews;
+        let elements;
+        let windowHeight;
 
-  function init() {
-    elements = document.querySelectorAll('.progress-bar');
-    reviews = document.querySelectorAll('.review-text');
-    windowHeight = window.innerHeight;
-  }
+        function init() {
+            elements = document.querySelectorAll('.progress-bar');
+            windowHeight = window.innerHeight;
+        }
 
-  function checkPosition() {
-      console.log('check');
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
-      var positionFromTop = elements[i].getBoundingClientRect().top;
+        function checkPosition() {
+            for (let i = 0; i < elements.length; i++) {
+                let element = elements[i];
+                let positionFromTop = elements[i].getBoundingClientRect().top;
 
-      if (positionFromTop - windowHeight <= 0) {
-          
-        //element.classList.add('progress-animate');
-        let width = element.getAttribute('data-rating');
-        element.style.width = width;
-        console.log(width);
-        element.style.webkitTransition = '4s width ease 1s';
-        element.style.MozTransition = '4s width ease 1s';
-        element.style.transition = '4s width ease 1s'
-      }
-      else
-        element.style.width = 0;
+                if (positionFromTop - windowHeight <= 0) {
+                    let width = element.getAttribute('data-rating');
+                    element.style.width = width;
+                    element.style.webkitTransition = '4s width ease 1s';
+                    element.style.MozTransition = '4s width ease 1s';
+                    element.style.transition = '4s width ease 1s'
+                }
+                else
+                    element.style.width = 0;
+            }
+        }
 
-    }
+        window.addEventListener('scroll', checkPosition);
+        window.addEventListener('resize', init);
 
-    for (var i = 0; i < reviews.length; i++) {
-      var review = reviews[i];
-      var positionFromTop = reviews[i].getBoundingClientRect().top;
-
-      if (positionFromTop - windowHeight <= 0) {
-          
-        review.style.transition = 'visibility 4s linear 4s, opacity 300ms';
-      }
-      else
-        review.style.opacity = '0';
-
-    }
-  }
-
-  //window.addEventListener('scroll', checkPosition);
-  //window.addEventListener('resize', init);
-
-  //init();
-  //checkPosition();
+        init();
+        checkPosition();
 
 
     })
 
     const addClass = (elems,  addedClass) =>{
-        for (var i = 0; i < elems.length; i++) {
+        for (let i = 0; i < elems.length; i++) {
             elems[i].classList.add(addedClass);
         }
     }
@@ -116,7 +96,7 @@
 
     // change video src
     const getVideoSrc = vids =>{
-        for (var i = 0; i < vids.length; i++) {
+        for (let i = 0; i < vids.length; i++) {
             let originalSrc = vids[i].src;
             let newSrc = originalSrc.replace('https://ralphjgorham.com', 'https://strapi-somn.onrender.com');
             //let newSrc = process.env.NODE_ENV === 'development' ? originalSrc.replace('http://localhost:3000', rootUrl) : originalSrc.replace('https://ralphjgorham.com', rootUrl);
@@ -243,14 +223,18 @@
                 {@html snarkdown(post.Body)}
                 </div>
 
-                <!--
-                <div class="review">
-                    <div class="progress">
-                        <div class="progress-bar" data-rating="32%"></div>
+                {#if post.Rating}
+                    <div class="review">
+                        <div class="progress">
+                            <div class="progress-bar" data-rating="{post.Rating}%"></div>
+                        </div>
+                        <p class="mt-4 text-lg">My rating for this movie is <span class="font-semibold text-3xl">{post.Rating}</span></p>
                     </div>
-                    <p class="review-text">My rating for this movie is 32</p>
-                </div>
-            -->
+                {/if}
+
+                
+            </div>
+            
             </main>
 
             <p class="text-center my-8 text-lg">⇺<a class="text-lg" href="blog"> back to thoughts</a></p>
