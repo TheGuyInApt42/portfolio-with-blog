@@ -10,7 +10,7 @@
 
 <style>
     section{
-        background-color: #02C9C9;
+        background-color: #8c92ac;
     }
 
     .title{
@@ -34,11 +34,18 @@
     }
 
     ::-webkit-input-placeholder{
+        color: black;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    :hover::-webkit-input-placeholder{
         color: white;
         font-size: 20px;
+        font-weight: 700;
     }
     .name:hover{
-        background-color: #DF1B76;
+        background-color: black;
         border-bottom: 5px solid #B2175F;
         /*height:33px;*/
         width:75%;
@@ -49,7 +56,7 @@
         
     }
     .email:hover{
-        background-color: #7239C1;  
+        background-color: black;  
         border-bottom: 5px solid #502789;
         height:42px;
         width:75%;
@@ -60,7 +67,7 @@
     }
 
     .message:hover{
-        background-color: #2DD7BB;
+        background-color: black;
         border-bottom: 5px solid #2BB09A;
         height: 100px;
         width:70%;
@@ -70,7 +77,8 @@
         border-radius:5px;
         padding:10px;
         /*width:150px;*/
-        color: white;
+        color: black;
+        font-weight: 700;
         background-color: #EE78D1;  
         border: none;
         border-bottom: 5px solid #CB64B2; 
@@ -80,6 +88,7 @@
 
     #submitBtn{
         width: 30.75%;
+        color: black;
     }
 
     .submit:hover{
@@ -95,8 +104,9 @@
         border: none;
         transition: all 0.5s ease 0s;
         box-shadow: 0px 0px 25px 2px #AAA;  
-        background-color: black;
+        background-color: #8c92ac;
         width: 61.5%;
+        color: white;
     }
 
     /* Shadow to make it look like form is floating  */
@@ -167,11 +177,11 @@
                 action="https://formspree.io/mgenodgy"
                 method="POST">
 
-                <input type="text" class="name entry text-white" placeholder="Your Name" name="_name"/>
+                <input type="text" class="name entry" placeholder="Name" name="_name"/>
 
-                <input type="text" class="email entry text-white h-50px" placeholder="Your Email" name="_replyto"/>
+                <input type="text" class="email entry text-white h-50px" placeholder="Email" name="_replyto"/>
 
-                <textarea class="message entry overflow-hidden text-white h-100px" placeholder="Your Message" name="message"></textarea> 
+                <textarea class="message entry overflow-hidden text-white h-100px" placeholder="Message" name="message"></textarea> 
 
                 <button type="submit" id="submitBtn" class="submit entry p-10px mt-150px" onclick="thanks()">Send</button>
             

@@ -228,7 +228,7 @@
                         <div class="progress">
                             <div class="progress-bar" data-rating="{post.Rating}%"></div>
                         </div>
-                        <p class="mt-4 text-lg">My rating for this movie is <span class="font-semibold text-3xl">{post.Rating}</span></p>
+                        <p class="mt-4 text-lg">My rating for this movie is <span class="font-semibold text-3xl ml-3">{post.Rating} / 100</span></p>
                     </div>
                 {/if}
 

@@ -40,7 +40,7 @@ module.exports = {
             'layout': 'auto 100% auto'
         },
         gridTemplateColumns:{
-            'footer': '1fr 200px'
+            'footer': '1fr 250px'
         },
         zIndex: {
             '2': 2,
