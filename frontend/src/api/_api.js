@@ -23,6 +23,21 @@ const helpers = {
 
     },
 
+    fetchPostsPagination: async function(start){
+        const blogPostsPaginated = process.env.NODE_ENV === 'development' ? `http://localhost:1337/blogs?_sort=Published:desc&_limit=2&_start=${start}` : 'https://strapi-somn.onrender.com/blogs?_sort=Published:desc';
+        let posts = [];
+        await axios.get(blogPostsPaginated)
+            .then((response) => {
+                posts.push(response.data);
+            
+            })
+            .catch(
+                error => console.log(error)
+            );
+        return posts;
+
+    },
+
     fetchPost: async function(slug){
         let post ={};
         

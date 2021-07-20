@@ -2,12 +2,31 @@
     import dayjs from 'dayjs';
     import helpers from '../../api/_api.js';
 
-    export async function preload() {
+    let current = 1;
+    let num_items = 5;
+    let per_page = 2;
+
+    const chunk = (arr, chunkSize = 1, cache = []) => {
+        const tmp = [...arr]
+        if (chunkSize <= 0) return cache
+        while (tmp.length) cache.push(tmp.splice(0, chunkSize))
+        return cache
+    }
+
+    export async function preload(page) {
+        const index = +(page.query.page || 1)
+
         try{
             const result = await helpers.fetchPosts()
             const posts = result[0];
+            let pages = chunk(posts, 6);
 
-            return {posts}     
+            return {
+                posts : pages[index-1],
+                hasMore : pages.length >= index + 1,
+                page: index,
+                numberPages : pages.length
+            }     
         }
 
         catch (e) {
@@ -18,7 +37,13 @@
 </script>
 
 <script>
-    export let posts;
+    //import Pagination from '@fouita/pagination';
+    import Pagination from '../../components/Pagination.svelte';
+    import { fadeIn, fadeOut } from '../../components/pageFade'
+
+    
+    
+    export let posts, hasMore, page, numberPages;
 </script>
 
 
@@ -27,10 +52,10 @@
     <meta name="description" content="The life and times of Ralph Jarrod Gorham and random musings"/>
 </svelte:head>
 
-<section class="h-full flex items-center justify-center text-white bg-blog-background below-1024:flex-col">
-    <h1 class="below-1024:py-12 px-5% text-5xl font-bold">Thoughts</h1>
+<section class="h-full flex items-center justify-center text-white bg-blog-background flex-col">
+    <h1 class="py-12 px-5% text-5xl font-bold">My Life</h1>
 
-<ul class="below-768:pl-8 leading-normal mb-4">
+<ul class="below-768:pl-8 leading-normal mb-4" in:fadeIn out:fadeOut>
 {#each posts as post}
     <li class="mb-12 list-none">
         <h2 class="main-title below-768:text-3.5xl text-40px no-underline" rel='prefetch' href='blog/{post.Slug}'>
@@ -56,6 +81,20 @@
         
 {/each}
 </ul>
+
+<Pagination {numberPages} {page} {hasMore} />
+
+<!--
+{#if page > 1}
+  <a href="/blog?page={page-1}">Previous</a>
+{/if}
+
+
+
+{#if hasMore}
+  <a href="/blog?page={page+1}">Next</a>
+{/if}
+-->
 </section>
 
 <style>
