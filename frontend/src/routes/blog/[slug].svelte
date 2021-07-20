@@ -203,7 +203,7 @@
 <section class="h-full pt-2% text-white bg-blog-background">
     {#each post as post}
             {#if post.Cover}
-                <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url({rootUrl}{post.Cover.url})">
+                <div class="header container flex flex-col items-center pt-5% bg-no-repeat bg-contain below-768:hidden" style="background-image: url({post.Cover.url})">
                 </div>
             {/if}
             
