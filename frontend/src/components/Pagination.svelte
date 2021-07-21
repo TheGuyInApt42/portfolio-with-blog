@@ -38,7 +38,7 @@
     }
 
     .pagination a {
-    color: black;
+    color: white;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -50,9 +50,15 @@
     border-radius: 5px;
     }
 
+    /*
     .pagination a:hover:not(.active) {
     background-color: #ddd;
     border-radius: 5px;
+    }
+    */
+
+    .pagination a:hover{
+        text-decoration: underline;
     }
 </style>
 
@@ -60,7 +66,9 @@
 <div class="pagination">
     {#if numberPages > 1}
         {#if page > 1}
-            <a href="/blog?page={page-1}" on:click="{() => changePage(current_page - 1)}">Newer Posts</a>
+            <a href="/blog?page={page-1}" on:click="{() => changePage(current_page - 1)}">
+                <span>&#129060</span> Newer Posts
+            </a>
         {/if}
 
         <!--
@@ -71,7 +79,9 @@
         {/each}
         -->
         {#if hasMore}
-            <a href="/blog?page={page+1}" on:click="{() => changePage(current_page + 1)}">Older Posts</a>
+            <a href="/blog?page={page+1}" on:click="{() => changePage(current_page + 1)}">
+                <span>&#129062</span> Older Posts
+            </a>
         {/if}
     {/if}
 </div>

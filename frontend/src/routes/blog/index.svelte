@@ -19,7 +19,7 @@
         try{
             const result = await helpers.fetchPosts()
             const posts = result[0];
-            let pages = chunk(posts, 6);
+            let pages = chunk(posts, 5);
 
             return {
                 posts : pages[index-1],
