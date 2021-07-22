@@ -15,8 +15,7 @@
     "dayjs": "^1.10.4",
     "polka": "next",
     "sirv": "^1.0.0",
-    "snarkdown": "^2.0.0",
-    "svelte-paginate": "0.0.1"
+    "snarkdown": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -24,7 +23,6 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
-    "@fouita/pagination": "0.0.2",
     "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
