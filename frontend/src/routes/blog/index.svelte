@@ -55,7 +55,7 @@
 <section class="h-full flex items-center justify-center text-white bg-blog-background flex-col">
     <h1 class="py-12 px-5% text-5xl font-bold">My Life</h1>
 
-<ul class="below-768:pl-8 leading-normal mb-4" in:fadeIn out:fadeOut>
+<ul class="below-768:pl-8 leading-normal mb-4 p-0 w-3/4" in:fadeIn out:fadeOut>
 {#each posts as post}
     <li class="mb-12 list-none">
         <h2 class="main-title below-768:text-3.5xl text-40px no-underline" rel='prefetch' href='blog/{post.Slug}'>
