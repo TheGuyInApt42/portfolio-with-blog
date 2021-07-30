@@ -7,6 +7,11 @@
             const result = await helpers.fetchCategoryByName(params.category)
 
             const category = result[0];
+            // sort by descending date
+            category.blogs.sort(function(a,b){
+                return b.Published.localeCompare(a.Published)
+            })
+            
 
             return {category}
         }
@@ -31,7 +36,7 @@
 
 <section class="h-full bg-blog-background text-white items-center flex flex-col">
 
-    <h1 class="text-6.5xl pt-8% font-goblin">
+    <h1 class="text-6.5xl pt-8%">
         {category.name}
     </h1>
 

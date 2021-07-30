@@ -58,7 +58,7 @@
 <ul class="below-768:pl-8 leading-normal mb-4 p-0 w-3/4" in:fadeIn out:fadeOut>
 {#each posts as post}
     <li class="mb-12 list-none">
-        <h2 class="main-title below-768:text-3.5xl text-40px no-underline" rel='prefetch' href='blog/{post.Slug}'>
+        <h2 class="main-title below-768:text-3.5xl text-40px no-underline font-oswald" rel='prefetch' href='blog/{post.Slug}'>
             {post.Title}
         </h2>
         <h3 class="pt-2% below-768:py-2%">{dayjs(post.Published).format("MMM DD YYYY")}</h3>
