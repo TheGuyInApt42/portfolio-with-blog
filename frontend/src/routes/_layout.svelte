@@ -40,7 +40,7 @@
         <Nav {segment}/> 
     </header>
 
-    <main class="w-screen mt-76px">
+    <main class="w-screen">
         <slot /> 
     </main>
 
